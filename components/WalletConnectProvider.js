@@ -12,7 +12,7 @@ export const WalletConnectProvider = ({children}) => {
     const network = WalletAdapterNetwork.Devnet;
 
     const endpoint = useMemo(()=>{
-        if(network==WalletAdapterNetwork.Devnet){
+        if(network===WalletAdapterNetwork.Devnet){
             return 'https://distinguished-lingering-log.solana-devnet.discover.quiknode.pro/ee241c814e5d7d13f38879236c6f611cd42d3e5b/'
 
         }
@@ -21,7 +21,7 @@ export const WalletConnectProvider = ({children}) => {
     const wallets = useMemo(()=>[new PhantomWalletAdapter()],[network])
 
     return (
-        <ConnectionProvider>
+        <ConnectionProvider endpoint={endpoint}>
             <WalletProvider wallets = {wallets} autoConnect>
                 <WalletModalProvider>{children}</WalletModalProvider>
             </WalletProvider>
